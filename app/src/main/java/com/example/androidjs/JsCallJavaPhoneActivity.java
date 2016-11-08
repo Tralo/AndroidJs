@@ -74,6 +74,7 @@ public class JsCallJavaPhoneActivity extends AppCompatActivity {
          */
         @JavascriptInterface
         public void call(String phone) {
+            Toast.makeText(JsCallJavaPhoneActivity.this,"开始拨打电话",Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + phone));
             if (ActivityCompat.checkSelfPermission(JsCallJavaPhoneActivity.this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
                 return;
