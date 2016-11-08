@@ -4,6 +4,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
+import android.webkit.JavascriptInterface;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Button;
@@ -73,11 +74,20 @@ public class JavaAndJsCallActivity extends AppCompatActivity implements View.OnC
         webView.getSettings().setJavaScriptEnabled(true);
         //不调用自己的浏览器--自定义了浏览器
         webView.setWebViewClient(new WebViewClient());
+        webView.addJavascriptInterface(new AndroidAndJsInterface(),"Android");
 
         //加载网络的网页-本地网页
 //        webView.loadUrl("https://www.baidu.com");
         webView.loadUrl("file:///android_asset/JavaAndJavaScriptCall.html");
 //        setContentView(webView);
+
+        }
+
+    class AndroidAndJsInterface{
+        @JavascriptInterface
+        public void showToast(){
+            Toast.makeText(JavaAndJsCallActivity.this,"我是被js调用的android代码",Toast.LENGTH_SHORT).show();
+        }
     }
 
 
