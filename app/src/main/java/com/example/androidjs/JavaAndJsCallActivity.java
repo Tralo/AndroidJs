@@ -19,10 +19,12 @@ public class JavaAndJsCallActivity extends AppCompatActivity implements View.OnC
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_java_and_js_call);
         findViews();
+        initWebView();
     }
     private EditText etNumber;
     private EditText etPassword;
     private Button btnLogin;
+    private WebView webView;
 
     /**
      * Find the Views in the layout<br />
@@ -54,22 +56,28 @@ public class JavaAndJsCallActivity extends AppCompatActivity implements View.OnC
                 return;
             }
             //登录逻辑
-            initWebView();
+//            initWebView();
+            login(number);
         }
+    }
+
+    private void login(String number) {
+        webView.loadUrl("javascript:javaCallJs('"+ number +"')");
+        setContentView(webView);
     }
 
     private void initWebView() {
         //1.加载网页-H5,html,自定义浏览器
-        WebView webView = new WebView(this);
+        webView = new WebView(this);
         //设置支持javascript(js)
         webView.getSettings().setJavaScriptEnabled(true);
         //不调用自己的浏览器--自定义了浏览器
         webView.setWebViewClient(new WebViewClient());
 
         //加载网络的网页-本地网页
-        webView.loadUrl("https://www.baidu.com");
-
-        setContentView(webView);
+//        webView.loadUrl("https://www.baidu.com");
+        webView.loadUrl("file:///android_asset/JavaAndJavaScriptCall.html");
+//        setContentView(webView);
     }
 
 
