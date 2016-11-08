@@ -49,6 +49,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         } else if ( v == btnJsCallJava ) {
             // Handle clicks for btnJsCallJava
+            Intent i = new Intent(this,JsCallJavaVideoActivity.class);
+            startActivity(i);
         } else if ( v == btnJsCallPhone ) {
             // Handle clicks for btnJsCallPhone
         }
